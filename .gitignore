@@ -39,6 +39,7 @@ docker/.container.cfg
 logs
 **/output/*
 **/outputs/*
+**/Outputs/*
 **/videos/*
 **/wandb/*
 **/.neptune/*

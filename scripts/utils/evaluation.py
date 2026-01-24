@@ -234,20 +234,16 @@ def eval(args: argparse.Namespace, simulation_app: Any) -> None:
         logger.info(f"IK solver loaded.")
 
     # 4. Load Evaluation List
-    if args.stage == "single":
-        eval_list = [args.garment_name]
-    else:
-        # Capitalize first letter: release -> Release, holdout -> Holdout
-        stage_capitalized = args.stage.capitalize()
-        eval_list_path = os.path.join(
-            args.garment_cfg_base_path,
-            stage_capitalized,
-            stage_capitalized + "_list.txt"
-        )
-        with open(eval_list_path, "r") as f:
-            eval_list = [line.strip() for line in f.readlines()]
-        logger.info(f"Stage {args.stage}: loaded {len(eval_list)} garments")
-    
+    stage_capitalized = args.stage.capitalize()  # Capitalize first letter: release -> Release, holdout -> Holdout
+    eval_list_path = os.path.join(
+        args.garment_cfg_base_path,
+        stage_capitalized,
+        stage_capitalized + "_list.txt"
+    )
+    with open(eval_list_path, "r") as f:
+        eval_list = [line.strip() for line in f.readlines()]
+    logger.info(f"Stage {args.stage}: loaded {len(eval_list)} garments")
+        
     # 5. Main Evaluation Loops
     all_garment_metrics = []
     

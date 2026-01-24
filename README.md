@@ -120,25 +120,28 @@ Evaluate your trained policy on the challenge garments. The framework supports L
 python -m scripts.eval \
     --policy_type lerobot \
     --policy_path outputs/train/act_fold/checkpoints/100000/pretrained_model \
-    --dataset_root Datasets/record/001 \
     --stage release \
-    --num_episodes 5
+    --num_episodes 5 \
+    --enable_cameras \
+    --device cpu
 
 # Evaluate custom policy on single garment
 python -m scripts.eval \
     --policy_type custom \
     --policy_path path/to/model.pth \
-    --stage single \
-    --garment_name Top_Long_Unseen_0 \
-    --num_episodes 5
+    --stage release \
+    --num_episodes 5 \
+    --enable_cameras \
+    --device cpu
 ```
 
 #### Evaluation Stages
 
-- `--stage release`: Evaluate on all release garments (default)
+- `--stage release`: Evaluate on release garments (default)
 - `--stage holdout`: Evaluate on holdout garments (for final testing)
-- `--stage single`: Evaluate on a specific garment (specify with `--garment_name`)
+- `--stage all`: Evaluate on all the garments (for final testing)
 
+To test the model's performance on specific garment types, you can modify the `Assets/objects/Challenge_Garment/Release/Release_list.txt` file. By default, this file includes all four categories of clothing, with 12 items in each category.
 #### Common Options
 
 | Parameter | Description | Default |

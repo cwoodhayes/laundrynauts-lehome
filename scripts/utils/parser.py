@@ -402,14 +402,8 @@ def setup_eval_parser() -> argparse.ArgumentParser:
         "--stage",
         type=str,
         default="release",
-        choices=["release", "holdout", "single"],
-        help="Evaluation stage. 'release' and 'holdout' load garment list from file. 'single' evaluates only the garment specified by --garment_name.",
-    )
-    parser.add_argument(
-        "--garment_name",
-        type=str,
-        default="Top_Long_Unseen_0",
-        help="Name of the garment. Required when --stage is 'single'.",
+        choices=["release", "holdout", "all"],
+        help="Evaluation stage. 'release' and 'holdout' load garment list from file. 'all' evaluates all the garments.",
     )
     parser.add_argument(
         "--garment_cfg_base_path",
@@ -475,7 +469,7 @@ def setup_eval_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--dataset_root",
         type=str,
-        default="Datasets/record/030",
+        default="Datasets/record/example/record_top_long_release_10/001",
         help="Path of the train dataset (for metadata).",
     )
     parser.add_argument(

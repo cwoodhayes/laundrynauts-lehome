@@ -46,28 +46,15 @@
 > ⚠️ **IMPORTANT**: Before starting, you must download the simulation assets and example datasets from HuggingFace. See [Step 2: Assets & Data Preparation](#2-assets--data-preparation) for instructions.
 
 ### 1. Installation
-We offer two deployment methods: Docker and UV. Docker is required when submitting your application, so we recommend the former.
-***Docker is not ready yet; please use uv for Manual Installation for now.***
+We offer two installation methods: Docker and UV, for submission and local evaluation, respectively.
 
 #### Use Docker
 
-1. **Pull the official competition Docker image**
-   ```bash
-   docker pull lehome/competition:latest
-   ```
-
-2. **Run the container (with all GPU support)**
-   ```bash
-   docker run --gpus all -it --network=host \
-     -v $(pwd):/workspace/lehome \
-     -v /tmp/.X11-unix:/tmp/.X11-unix \
-     -e DISPLAY=$DISPLAY \
-     lehome/competition:latest
-   ```
+***Docker is not ready yet; please use uv for Installation for now.***
 
 #### Use UV
 
-If you prefer to set up the environment manually or want more customization, please refer to our [step-by-step installation guide](docs/installation.md).
+The LeHome competition environment is based on the IssacLab and LeRobot repositories; please refer to [UV installation guide](docs/installation.md).
 
 ### 2. Assets & Data Preparation
 
@@ -102,9 +89,7 @@ For detailed instructions on teleoperation data collection and dataset processin
 
 ### 3. Train
 
-We provide three baseline algorithms: **ACT**, **Diffusion Policy**, and **SmolVLA**. 
-
-> 📖 **For detailed training instructions, feature selection guide, and configuration options, see our [Training Guide](docs/training.md).**
+We provide several training examples; the models and training framework are from LeRobot.
 
 #### Quick Start
 
@@ -115,9 +100,9 @@ lerobot-train --config_path=configs/train_<policy>.yaml
 ```
 
 **Available config files:**
-- `configs/train_act.yaml` - ACT policy
-- `configs/train_dp.yaml` - Diffusion Policy  
-- `configs/train_smolvla.yaml` - SmolVLA policy
+- `configs/train_act.yaml` - ACT 
+- `configs/train_dp.yaml` - DP
+- `configs/train_smolvla.yaml` - SmolVLA 
 
 **Key configuration options:**
 - **Dataset path**: Update `dataset.root` to point to your dataset
@@ -125,12 +110,11 @@ lerobot-train --config_path=configs/train_<policy>.yaml
 - **Training parameters**: Adjust `batch_size`, `steps`, `save_freq`, etc.
 - **Output directory**: Modify `output_dir` to save models elsewhere
 
-
-See [Training Guide](docs/training.md) for complete configuration examples and feature selection strategies.
+> 📖 **For detailed training instructions, feature selection guide, and configuration options, see our [Training Guide](docs/training.md).**
 
 ### 4. Eval
 
-Evaluate your trained policy on the challenge garments. The framework supports LeRobot policies (ACT, Diffusion, VLA) and custom implementations.
+Evaluate your trained policy on the challenge garments. The framework supports LeRobot policies and custom implementations.
 
 **Examples:**
 

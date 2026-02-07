@@ -25,3 +25,7 @@ recordings/
 _isaac_sim?
 # Docker history
 docker/.isaac-lab-docker-history
+
+# ignore python virtual environments
+venv/
+.venv/

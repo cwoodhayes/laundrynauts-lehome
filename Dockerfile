@@ -24,13 +24,16 @@ RUN apt update && apt install -y \
 ENV __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 ## Clone and configure IsaacLab
-RUN git clone https://github.com/lehome-official/IsaacLab.git third_party/IsaacLab
+RUN if [ ! -d "third_party/IsaacLab" ]; then git clone https://github.com/lehome-official/IsaacLab.git third_party/IsaacLab; fi
 
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --locked --no-install-project
+
+# install IsaacLab dependencies
+RUN TERM=xterm /bin/bash -c "source .venv/bin/activate && yes | ./third_party/IsaacLab/isaaclab.sh -i none"
 
 # Copy the project into the image
 COPY . /app

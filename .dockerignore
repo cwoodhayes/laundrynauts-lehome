@@ -29,3 +29,6 @@ docker/.isaac-lab-docker-history
 # ignore python virtual environments
 venv/
 .venv/
+
+# ignore datasets as build context; these should be mounted as volumes at runtime
+Datasets/

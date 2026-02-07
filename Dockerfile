@@ -19,6 +19,7 @@ RUN apt update && apt install -y \
     libxext6 \
     libx11-6 \
     git \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 ENV __GLX_VENDOR_LIBRARY_NAME=nvidia

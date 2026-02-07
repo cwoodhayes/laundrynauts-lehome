@@ -7,6 +7,8 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt update && apt install -y \
+    build-essential \
+    linux-libc-dev \
     libglu1-mesa \
     libgl1 \
     libegl1 \
@@ -15,8 +17,9 @@ RUN apt update && apt install -y \
     libxcursor1 \
     libxi6 \
     libxext6 \
-    libx11-6 \ 
-    git
+    libx11-6 \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV __GLX_VENDOR_LIBRARY_NAME=nvidia
 

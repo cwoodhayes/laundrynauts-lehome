@@ -64,7 +64,7 @@ docker build . -t lehome-laundrynauts
 # set your huggingface token environment variable
 export HF_TOKEN=<your_token_here>
 # run the container image
-docker run -e HF_TOKEN=${HF_TOKEN} -v /home/xhy7159/repos/laundrynauts-lehome/Datasets:/app/Datasets:ro --shm-size=16g -it lehome-laundrynauts /bin/bash
+docker run -e HF_TOKEN=${HF_TOKEN} -v $(pwd)/Datasets:/app/Datasets:ro -v $(pwd)/outputs:/app/outputs --shm-size=16g -it lehome-laundrynauts /bin/bash
 
 ## inside the image, source the venv to run training etc
 source .venv/bin/activate

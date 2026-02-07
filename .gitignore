@@ -71,3 +71,8 @@ tests/
 
 # Docker history
 .isaac-lab-docker-history
+
+# IDE configurations
+**/.idea/
+**/.vscode/
+*.code-workspace

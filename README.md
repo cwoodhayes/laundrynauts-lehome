@@ -54,24 +54,7 @@ The simulation environment is based on the IssacLab and LeRobot repositories; pl
 
 #### Use Docker
 
-LaundryNauts has its own docker setup.
-
-Build and run the container image with:
-```bash
-# build the image
-docker build . -t lehome-laundrynauts
-
-# set your huggingface token environment variable
-export HF_TOKEN=<your_token_here>
-# run the container image
-docker run -e HF_TOKEN=${HF_TOKEN} -v $(pwd)/Datasets:/app/Datasets:ro -v $(pwd)/outputs:/app/outputs --shm-size=16g -it lehome-laundrynauts /bin/bash
-
-## inside the image, source the venv to run training etc
-source .venv/bin/activate
-
-# for instance, to run training for act, do:
-lerobot-train --config_path=configs/train_act.yaml
-```
+The simulation environment is based on the IssacLab and LeRobot repositories; please refer to [Docker installation guide](docs/docker_installation.md).
 
 ### 2. Assets & Data Preparation
 

@@ -63,8 +63,9 @@ docker build . -t lehome-laundrynauts
 
 # set your huggingface token environment variable
 export HF_TOKEN=<your_token_here>
-# run the container image
-docker run -e HF_TOKEN=${HF_TOKEN} -v $(pwd)/Datasets:/app/Datasets:ro -v $(pwd)/outputs:/app/outputs --shm-size=16g -it lehome-laundrynauts /bin/bash
+export WANDB_API_KEY=<your token here>
+# run the container image (enable NVIDIA GPU)
+docker run --gpus all -e HF_TOKEN=${HF_TOKEN} -e WANDB_API_KEY=${WANDB_API_KEY} -v $(pwd)/Datasets:/app/Datasets:ro -v $(pwd)/outputs:/app/outputs --shm-size=16g -it lehome-laundrynauts /bin/bash
 
 ## inside the image, source the venv to run training etc
 source .venv/bin/activate
